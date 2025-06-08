@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
                     sR.sprite = spriteDown;
             }
         }
+        ScoreText.text = "Score : " + score;
     }
 
     private void FixedUpdate()
@@ -75,7 +76,6 @@ public class Player : MonoBehaviour
         {
             score += collision.GetComponent<ItemObject>().GetPoint();
             Destroy(collision.gameObject);
-            ScoreText.text = "Score : " + score;
         }
 
        
