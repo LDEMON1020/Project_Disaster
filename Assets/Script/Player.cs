@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -10,8 +11,12 @@ public class Player : MonoBehaviour
     float moveSpeed = 2f;
 
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI CoinText;
+    public TextMeshProUGUI HPText;
 
     public float score;
+    public float coin;
+    public int HP;
 
     [SerializeField] Sprite spriteUp;
     [SerializeField] Sprite spriteDown;
@@ -30,11 +35,12 @@ public class Player : MonoBehaviour
         sR = GetComponent<SpriteRenderer>();
         rb.bodyType = RigidbodyType2D.Kinematic;
         score = 0f;
+        coin = 0f;
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        HP = 3;
     }
 
     // Update is called once per frame
@@ -63,6 +69,9 @@ public class Player : MonoBehaviour
             }
         }
         ScoreText.text = "Score : " + score;
+        CoinText.text = "Coin : " + coin;
+
+       
     }
 
     private void FixedUpdate()
@@ -75,9 +84,16 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Item"))
         {
             score += collision.GetComponent<ItemObject>().GetPoint();
+            coin += collision.GetComponent<ItemObject>().GetCoin();
             Destroy(collision.gameObject);
         }
 
        
     }
+
+    void GameOver()     //게임 오버 구현 필요
+    {
+
+    }
+
 }

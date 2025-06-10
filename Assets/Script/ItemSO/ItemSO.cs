@@ -4,6 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(menuName = "Game/Item", fileName = "NewItem")]
+
 public class ItemSO : ScriptableObject
 {
     

@@ -2,20 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemObject : MonoBehaviour
+
+[CreateAssetMenu(menuName = "Game/Coin", fileName = "CoinData")]
+public class CoinSO : ScriptableObject
 {
-    [SerializeField] ItemSO data;
-    [SerializeField] CoinSO coin;
+    [Header("Coin Value")]
+    public int Coin = 5;
 
-    public int GetPoint()
-    {
-        return data.point;
-    }
 
-    public int GetCoin()
-    {
-        return coin.Coin;
-    }
     // Start is called before the first frame update
     void Start()
     {

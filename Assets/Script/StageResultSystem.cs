@@ -13,6 +13,8 @@ public class StageResult
     public int stage;
    
     public int score;
+
+    public int Coin;
 }
 [System.Serializable]
 
@@ -25,16 +27,23 @@ public static class StageResultSaver
 {
     private const string FILE = "GameScore_Results.json";
     private const string PLAYER_NAME = "PlayerName";
+    private const string COIN = "COIN";
     private static string filePath = Path.Combine(Application.persistentDataPath, FILE);
+    
     public static void SaveStage(int stage, int score)
     {
         StageResultList list = LoadInternal();
         string playerName = PlayerPrefs.GetString(PLAYER_NAME, "");
+        string coinSTR = PlayerPrefs.GetString(COIN, "");
+        int coin = 0;
+        int.TryParse(coinSTR, out coin);
+
         StageResult entry = new StageResult
         {
-       playerName = playerName,
-       stage = stage,
-       score = score
+            playerName = playerName,
+            stage = stage,
+            score = score,
+            Coin = coin
         };
         list.results.Add(entry);
         string json = JsonUtility.ToJson(list, true);
