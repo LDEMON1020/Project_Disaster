@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         }
         ScoreText.text = "Score : " + score;
         CoinText.text = "Coin : " + coin;
-
+        HPText.text = "HP : " + HP;
        
     }
 
