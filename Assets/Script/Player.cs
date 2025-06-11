@@ -81,12 +81,17 @@ public class Player : MonoBehaviour
     {
         if (collision.CompareTag("Item"))
         {
+            ItemObject item = collision.GetComponent<ItemObject>();
+
+
             score += collision.GetComponent<ItemObject>().GetPoint();
             coin += collision.GetComponent<ItemObject>().GetCoin();
-            Destroy(collision.gameObject);
-        }
 
-       
+            ScoreText.text = score.ToString();
+            Destroy(collision.gameObject);
+
+            GameDataManager.Instance.SaveData(GameDataManager.Instance.playerData);
+        }
     }
 
     void GameOver()     //게임 오버 구현 필요
