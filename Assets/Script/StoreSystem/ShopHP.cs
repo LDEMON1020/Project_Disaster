@@ -22,36 +22,40 @@ public class ShopHP : MonoBehaviour
             Regeneratable = false;
         }
     }
-    // Start is called before the first frame update
 
+    // Start is called before the first frame update
+    
     public void CheckingHP()
     {
         if (Regeneratable)
         {
             if (player.coin >= 50)
             {
+                OrderText.text = "";
                 player.coin -= 50;
                 player.HP += 1;
                 OrderText.text = "HP : + 1";
-                OrderText.CrossFadeAlpha(0f, 1f, false);
             }
 
-            else if (!Regeneratable)
+            else if (player.coin < 50)
             {
-                if (player.coin <= 50)
-                {
-                    OrderText.text = "You don't have enough coins";
-                    OrderText.CrossFadeAlpha(0f, 1f, false);
-                }
-
-                if (player.HP == 3)
-                {
-                    OrderText.text = "You Can't Regenerate";
-                    OrderText.CrossFadeAlpha(0f, 1f, false);
-                }
+                OrderText.text = "";
+                OrderText.text = "You don't have enough coins";
+            }
+        }
+        else if (!Regeneratable)
+        {
+            if (player.HP == 3 && player.coin >= 50)
+            {
+                OrderText.text = "";
+                OrderText.text = "You Can't Regenerate";
             }
 
-          
+            if(player.HP == 3 && player.coin < 50)
+                {
+                    OrderText.text = "";
+                    OrderText.text = "You Can't Regenerate";
+                }
         }
 
     }
