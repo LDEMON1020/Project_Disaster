@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 
@@ -39,7 +40,11 @@ public class GameDataManager : MonoBehaviour
     public void GameStart()
     {
         playerData = LoadData();
-            if(playerData == null)
+        if (playerData == null)
+        {
+            playerData = new PlayerData();
+            SceneManager.LoadScene("Play_Scene");
+        }
     }
 
     public PlayerData LoadData()

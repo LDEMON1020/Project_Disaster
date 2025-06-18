@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
             ScoreText.text = score.ToString();
             Destroy(collision.gameObject);
 
-            GameDataManager.Instance.SaveData(GameDataManager.Instance.playerData);
+            //GameDataManager.Instance.SaveData(GameDataManager.Instance.playerData);
         }
     }
 
