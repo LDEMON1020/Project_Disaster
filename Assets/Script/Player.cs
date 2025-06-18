@@ -2,6 +2,7 @@
 using TMPro;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class Player : MonoBehaviour
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI CoinText;
     public TextMeshProUGUI HPText;
+    public GameObject GameOverPanel;
 
     public float score;
     public float coin;
@@ -70,6 +72,11 @@ public class Player : MonoBehaviour
         CoinText.text = "Coin : " + coin;
         HPText.text = "HP : " + HP;
        
+        if(HP==0)
+        {
+            Time.timeScale = 0;
+            GameOverPanel.SetActive(true);
+        }
     }
 
     private void FixedUpdate()
@@ -91,6 +98,10 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
 
             //GameDataManager.Instance.SaveData(GameDataManager.Instance.playerData);
+        }
+        if (collision.CompareTag("Disaster"))
+        {
+            HP--;
         }
     }
 
