@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class GenerateDiasaster : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject[] fruitPrefabs;
+    public GameObject currentDisaster;
+    public int currentDisasterType;
+
+    public bool isGameOver;
+
+    public Camera mainCamera;
+
     void Start()
     {
-        
+        mainCamera = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnNewFruit()
     {
-        
+        if (!isGameOver)
+        {
+            
+
+        }
     }
 }
