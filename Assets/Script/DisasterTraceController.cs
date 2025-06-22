@@ -33,7 +33,7 @@ public class DisasterTraceController : MonoBehaviour
         {
             if (rHit.collider != null && rHit.collider.CompareTag("Disaster"))
             {
-                Vector3 alternativeDirection = Quaternion.Euler(0f, 0f, -70f) * direction;
+                Vector3 alternativeDirection = Quaternion.Euler(0f, 0f, -90f) * direction;
                 transform.Translate(alternativeDirection * moveSpeed * Time.deltaTime);
             }
             else
