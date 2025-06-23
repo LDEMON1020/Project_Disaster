@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Play_Scene.unity
     guid: e24d49623f4173746b1e1cff44023ee4
+  - enabled: 1
+    path: Assets/Scenes/Play_Scene_Scary.unity
+    guid: 9e6841b834984ce45bcfaf18d313fc2d
+  - enabled: 1
+    path: Assets/Scenes/ScaryScene_Start.unity
+    guid: 72ac8bdb495458d46bf4a0ffb9ed151b
   m_configObjects: {}
