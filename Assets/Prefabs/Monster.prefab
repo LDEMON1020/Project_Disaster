@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d90602a5a2ed6e409522d2bcc1209be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
   moveSpeed: 2
   raycastDistance: 1
   traceDistance: 1
@@ -92,7 +95,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a481e18e7dd20864c9853d0b4136a7b4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e385fcb10580d3343b8c72adff5d8a7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
