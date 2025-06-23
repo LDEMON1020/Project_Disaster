@@ -22,6 +22,17 @@ public class DisasterTraceController : MonoBehaviour
     {
         Vector2 direction = player.position - transform.position;
 
+        if (player.position.x < transform.position.x)
+        {
+            // 플레이어가 왼쪽에 있을 때
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        else
+        {
+            // 플레이어가 오른쪽에 있을 때
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+
         if (direction.magnitude > traceDistance)
             return;
 
