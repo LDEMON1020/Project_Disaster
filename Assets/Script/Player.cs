@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public GameObject GameOverPanel;
 
     public float score;
-    public float coin;
+    public int coin;
     public int HP;
 
     [SerializeField] Sprite spriteUp;
@@ -35,7 +35,6 @@ public class Player : MonoBehaviour
         sR = GetComponent<SpriteRenderer>();
         rb.bodyType = RigidbodyType2D.Kinematic;
         score = 0f;
-        coin = 0f;
     }
     // Start is called before the first frame update
     void Start()
@@ -48,6 +47,8 @@ public class Player : MonoBehaviour
     {
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
+
+        coin = GameDataManager.Instance.playerData.Coin;
 
         velocity = input.normalized * moveSpeed;
 
@@ -97,7 +98,9 @@ public class Player : MonoBehaviour
             ScoreText.text = score.ToString();
             Destroy(collision.gameObject);
 
-            //GameDataManager.Instance.SaveData(GameDataManager.Instance.playerData);
+            GameDataManager.Instance.playerData.Coin = coin;
+
+            GameDataManager.Instance.SaveData();
         }
         if (collision.CompareTag("Disaster"))
         {

@@ -10,16 +10,30 @@ public class DisasterTraceController : MonoBehaviour
     public float raycastDistance = 2f;
     public float traceDistance = 2f;
 
+    public float MinDestroyInterval = 1.0f;
+    public float MaxDestroyInterval = 3.0f;
+
+    public float timer = 0.0f;
+    public float DestroyMonsterTime;
+
     private Transform player;
     // Start is called before the first frame update
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        DestroyMonster();
     }
 
     // Update is called once per frame
-    private void Update()
+        void Update()
     {
+        timer += Time.deltaTime;
+
+        if (timer >= DestroyMonsterTime)
+        {
+            Destroy(gameObject);
+        }
+
         Vector2 direction = player.position - transform.position;
 
         if (player.position.x < transform.position.x)
@@ -51,5 +65,10 @@ public class DisasterTraceController : MonoBehaviour
             {
                 transform.Translate(directionNormalized * moveSpeed * Time.deltaTime);
             }
+    }
+
+    void DestroyMonster()
+    {
+        DestroyMonsterTime = Random.Range(MinDestroyInterval, MaxDestroyInterval);
     }
 }

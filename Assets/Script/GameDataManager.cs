@@ -10,6 +10,8 @@ public class PlayerData
 {
     public List<string> collectedItems = new List<String>();
     public int stage = 1;
+    public int Coin;
+    public float Hp;
 }
 public class GameDataManager : MonoBehaviour
 {
@@ -29,22 +31,12 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
-    public void SaveData(PlayerData playerData)
+    public void SaveData()
     {
         string filePath = Application.persistentDataPath + "/player_data.json";
         string json = json = JsonUtility.ToJson(playerData, true);
         System.IO.File.WriteAllText(filePath, json);
         Debug.Log("게임 데이터 저장됨: " + json);
-    }
-
-    public void GameStart()
-    {
-        playerData = LoadData();
-        if (playerData == null)
-        {
-            playerData = new PlayerData();
-            SceneManager.LoadScene("Play_Scene");
-        }
     }
 
     public PlayerData LoadData()
@@ -62,5 +54,26 @@ public class GameDataManager : MonoBehaviour
             Debug.LogWarning("저장한 게임 데이터가 없습니다.");
             return new PlayerData();
         }
+    }
+    public void GameStart()
+    {
+        playerData = LoadData();
+        if (playerData == null)
+        {
+            playerData = new PlayerData();
+            SceneManager.LoadScene("Play_Scene_Scary");
+        }
+    }
+
+    public void PlayerDead()
+    {
+        PlayerData playerData = LoadData();
+        if (playerData != null)
+        {
+            playerData.stage = 1;
+
+            SaveData();
+        }
+        SceneManager.LoadScene("GameOver");
     }
 }
