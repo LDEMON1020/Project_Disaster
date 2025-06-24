@@ -20,7 +20,7 @@ public class MonsterSpawner : MonoBehaviour
 
     [Header("동전 스폰 확률 설정")]
     [Range(0, 100)]
-    public int coinSpawnChance = 75;
+    public int coinSpawnChance = 100;
 
     // Start is called before the first frame update
     void Start()

@@ -57,6 +57,9 @@ public class ShopHP : MonoBehaviour
                     OrderText.text = "You Can't Regenerate";
                 }
         }
+    }
+    void CheckingStamina()
+    {
 
     }
 }

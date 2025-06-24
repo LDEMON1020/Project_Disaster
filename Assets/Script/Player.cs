@@ -3,6 +3,7 @@ using TMPro;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class Player : MonoBehaviour
@@ -13,9 +14,19 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI CoinText;
     public TextMeshProUGUI HPText;
 
+    public Slider Stamina;
+    public float MaxStamina = 50f;
+    public float CurrentStamina;
+
+    public bool Running = false;
+
     public float score;
     public int coin;
     public int HP;
+
+
+
+    public int cheatAmount = 100;
 
     [SerializeField] Sprite spriteUp;
     [SerializeField] Sprite spriteDown;
@@ -38,7 +49,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CurrentStamina = MaxStamina;
         HP = 2;
+        UpdateStaminaUI();
     }
 
     // Update is called once per frame
@@ -77,6 +90,41 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene("GameOver");
             GameDataManager.Instance.PlayerDead();
         }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            coin += cheatAmount;
+            GameDataManager.Instance.playerData.Coin = coin;  // 저장소 업데이트
+            GameDataManager.Instance.SaveData();  // 저장
+            Debug.Log("치트 적용! 코인 + " + cheatAmount + " 현재 코인: " + coin);
+        }
+        if (Running == false)
+        {
+            moveSpeed = 2f;
+        }
+
+
+        if (Input.GetKey(KeyCode.LeftShift) && CurrentStamina > 0)
+        {
+            Running = true;
+            moveSpeed = 3f;
+            CurrentStamina -= Time.deltaTime * 10f;  // 초당 10씩 감소
+            CurrentStamina = Mathf.Clamp(CurrentStamina, 0f, MaxStamina);
+            UpdateStaminaUI();
+        }
+        else
+        {
+            Running = false;
+            moveSpeed = 2f;
+
+            // 가만히 있을 때 회복
+            if (input == Vector2.zero && CurrentStamina < MaxStamina)
+            {
+                CurrentStamina += Time.deltaTime * 5f;
+                CurrentStamina = Mathf.Clamp(CurrentStamina, 0f, MaxStamina);
+                UpdateStaminaUI();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -105,6 +153,12 @@ public class Player : MonoBehaviour
         {
             HP--;
         }
+    }
+
+    void UpdateStaminaUI()
+    {
+        if (Stamina != null)
+            Stamina.value = CurrentStamina;
     }
 
     void GameOver()     //게임 오버 구현 필요
