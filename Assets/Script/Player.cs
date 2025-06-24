@@ -12,7 +12,6 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI CoinText;
     public TextMeshProUGUI HPText;
-    public GameObject GameOverPanel;
 
     public float score;
     public int coin;
@@ -73,10 +72,9 @@ public class Player : MonoBehaviour
         CoinText.text = "Coin : " + coin;
         HPText.text = "HP : " + HP;
        
-        if(HP==0)
+        if(HP<=0)
         {
-            Time.timeScale = 0;
-            GameOverPanel.SetActive(true);
+            GameDataManager.Instance.PlayerDead();
         }
     }
 
