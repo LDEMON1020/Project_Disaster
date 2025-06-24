@@ -50,9 +50,9 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 8
-  moveSpeed: 1
+  moveSpeed: 0.75
   raycastDistance: 1
-  traceDistance: 1
+  traceDistance: 20
   MinDestroyInterval: 10
   MaxDestroyInterval: 30
   timer: 0
