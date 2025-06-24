@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
         input.y = Input.GetAxisRaw("Vertical");
 
         coin = GameDataManager.Instance.playerData.Coin;
+        MaxStamina = GameDataManager.Instance.playerData.MaxStamina;
 
         velocity = input.normalized * moveSpeed;
 

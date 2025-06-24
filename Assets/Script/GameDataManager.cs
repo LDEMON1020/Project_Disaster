@@ -12,6 +12,7 @@ public class PlayerData
     public int stage = 1;
     public int Coin;
     public float Hp;
+    public float MaxStamina;
 }
 public class GameDataManager : MonoBehaviour
 {
