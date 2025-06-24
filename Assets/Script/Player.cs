@@ -50,12 +50,13 @@ public class Player : MonoBehaviour
     void Start()
     {
         CurrentStamina = MaxStamina;
+        Stamina.maxValue = MaxStamina;
         HP = 2;
         UpdateStaminaUI();
     }
 
     // Update is called once per frame
-   private void Update()
+    private void Update()
     {
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
@@ -65,9 +66,9 @@ public class Player : MonoBehaviour
 
         velocity = input.normalized * moveSpeed;
 
-        if(input.sqrMagnitude > .01f)
+        if (input.sqrMagnitude > .01f)
         {
-            if(Mathf.Abs(input.x) > Mathf.Abs(input.y))
+            if (Mathf.Abs(input.x) > Mathf.Abs(input.y))
             {
                 if (input.x > 0)
                     sR.sprite = spriteRight;
@@ -85,8 +86,8 @@ public class Player : MonoBehaviour
         ScoreText.text = "Score : " + score;
         CoinText.text = "Coin : " + coin;
         HPText.text = "HP : " + HP;
-       
-        if(HP<=0)
+
+        if (HP <= 0)
         {
             SceneManager.LoadScene("GameOver");
             GameDataManager.Instance.PlayerDead();
@@ -99,6 +100,8 @@ public class Player : MonoBehaviour
             GameDataManager.Instance.SaveData();  // 저장
             Debug.Log("치트 적용! 코인 + " + cheatAmount + " 현재 코인: " + coin);
         }
+
+
         if (Running == false)
         {
             moveSpeed = 2f;
@@ -109,7 +112,7 @@ public class Player : MonoBehaviour
         {
             Running = true;
             moveSpeed = 3f;
-            CurrentStamina -= Time.deltaTime * 10f;  // 초당 10씩 감소
+            CurrentStamina -= Time.deltaTime * 10f;  
             CurrentStamina = Mathf.Clamp(CurrentStamina, 0f, MaxStamina);
             UpdateStaminaUI();
         }
@@ -118,7 +121,7 @@ public class Player : MonoBehaviour
             Running = false;
             moveSpeed = 2f;
 
-            // 가만히 있을 때 회복
+            
             if (input == Vector2.zero && CurrentStamina < MaxStamina)
             {
                 CurrentStamina += Time.deltaTime * 5f;
@@ -159,12 +162,9 @@ public class Player : MonoBehaviour
     void UpdateStaminaUI()
     {
         if (Stamina != null)
+        {
+            Stamina.maxValue = MaxStamina;  // 혹시 중간에 변하는 경우를 대비
             Stamina.value = CurrentStamina;
+        }
     }
-
-    void GameOver()     //게임 오버 구현 필요
-    {
-
-    }
-
 }

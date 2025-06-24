@@ -10,9 +10,9 @@ public class PlayerData
 {
     public List<string> collectedItems = new List<String>();
     public int stage = 1;
-    public int Coin;
-    public float Hp;
-    public float MaxStamina;
+    public int Coin = 0;
+    public float Hp = 2f;
+    public float MaxStamina = 50f;
 }
 public class GameDataManager : MonoBehaviour
 {
@@ -53,17 +53,26 @@ public class GameDataManager : MonoBehaviour
         else 
         {
             Debug.LogWarning("저장한 게임 데이터가 없습니다.");
-            return new PlayerData();
+            return new PlayerData()
+            {
+                Coin = 0,
+                Hp = 2f,
+                MaxStamina = 50f
+            };
         }
     }
     public void GameStart()
     {
         playerData = LoadData();
         if (playerData == null)
-        {
             playerData = new PlayerData();
-            SceneManager.LoadScene("Play_Scene_Scary");
+        
+        if (playerData.MaxStamina <= 0f)
+        {
+            playerData.MaxStamina = 50f;
+            SaveData();
         }
+        SceneManager.LoadScene("Play_Scene_Scary");
     }
 
     public void PlayerDead()

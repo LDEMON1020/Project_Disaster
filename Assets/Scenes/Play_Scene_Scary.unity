@@ -1092,7 +1092,7 @@ MonoBehaviour:
     stage: 1
     Coin: 0
     Hp: 0
-    MaxStamina: 0
+    MaxStamina: 50
 --- !u!4 &353138680
 Transform:
   m_ObjectHideFlags: 0
