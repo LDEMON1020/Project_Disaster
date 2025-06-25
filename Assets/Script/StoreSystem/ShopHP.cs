@@ -44,7 +44,6 @@ public class ShopHP : MonoBehaviour
         {
             if (player.coin >= 50)
             {
-                OrderText.text = "";
                 player.coin -= 50;
                 GameDataManager.Instance.playerData.Coin = player.coin;
                 player.HP += 1;
@@ -55,7 +54,6 @@ public class ShopHP : MonoBehaviour
 
             else if (player.coin < 50)
             {
-                OrderText.text = "";
                 OrderText.text = "You don't have enough coins";
             }
         }
@@ -63,13 +61,11 @@ public class ShopHP : MonoBehaviour
         {
             if (player.HP == 3 && player.coin >= 50)
             {
-                OrderText.text = "";
                 OrderText.text = "You Can't Regenerate";
             }
 
             if(player.HP == 3 && player.coin < 50)
                 {
-                    OrderText.text = "";
                     OrderText.text = "You Can't Regenerate";
                 }
         }
@@ -80,7 +76,6 @@ public class ShopHP : MonoBehaviour
         {
             if (player.coin >= 50)
             {
-                OrderText.text = "";
                 player.coin -= 50;
                 player.MaxStamina += 10f;
                 GameDataManager.Instance.playerData.Coin = player.coin;
@@ -92,7 +87,6 @@ public class ShopHP : MonoBehaviour
 
             else if (player.coin < 50)
             {
-                OrderText.text = "";
                 OrderText.text = "You don't have enough coins";
             }
         }
@@ -100,13 +94,11 @@ public class ShopHP : MonoBehaviour
         {
             if (player.MaxStamina == 100 && player.coin >= 50)
             {
-                OrderText.text = "";
                 OrderText.text = "You Can't Upgrade!!!";
             }
 
             if (player.MaxStamina == 100 && player.coin < 50)
             {
-                OrderText.text = "";
                 OrderText.text = "You Can't Upgrade!!!";
             }
         }
